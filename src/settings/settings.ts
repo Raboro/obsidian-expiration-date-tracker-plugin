@@ -1,14 +1,27 @@
-import { App, Notice, PluginSettingTab, Setting, SliderComponent } from 'obsidian';
+import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
 import ExpirationDateTrackerPlugin from 'src/main';
 
 export interface ExpirationDateTrackerSettings {
     dateFormatting: string;
     expirationDateNodeLocation: string;
+    expiredCategoryDays: number;
+    criticalCategoryDays: number;
+    veryHighCategoryDays: number
+    highCategoryDays: number;
+    mediumCategoryDays: number;
+    lowCategoryDays: number;
+
 }
 
 export const DEFAULT_SETTINGS: ExpirationDateTrackerSettings = {
     dateFormatting: 'DD/MM/YYYY',
-    expirationDateNodeLocation: 'expirationDateNode.md'
+    expirationDateNodeLocation: 'expirationDateNode.md',
+    expiredCategoryDays: 0,
+    criticalCategoryDays: 1,
+    veryHighCategoryDays: 2,
+    highCategoryDays: 3,
+    mediumCategoryDays: 5,
+    lowCategoryDays: 10
 }; 
 
 export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
@@ -84,11 +97,22 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
 	}
 
     expirationSettings(): void {
-        const names: Array<string> = ['Expired', 'Critical', 'Very High', 'High', 'Medium', 'Low'];
-        const descriptions: Array<string> = ['expired', 'soooo close of being expired', 'so close of being expired',
-                                             'close of being expired', 'pretty new', 'completely new'];
-        const values: Array<string> = ['', '', '', '', '', ''];
+        this.iterateOverExpirationSettings(
+            ['Expired', 'Critical', 'Very High', 'High', 'Medium', 'Low'], 
+            ['expired', 'soooo close of being expired', 'so close of being expired',
+             'close of being expired', 'pretty new', 'completely new'],
+            [
+                this.plugin.settings.expiredCategoryDays,
+                this.plugin.settings.criticalCategoryDays,
+                this.plugin.settings.veryHighCategoryDays,
+                this.plugin.settings.highCategoryDays,
+                this.plugin.settings.mediumCategoryDays,
+                this.plugin.settings.lowCategoryDays,
+            ] 
+        );
+    }
 
+    iterateOverExpirationSettings(names: Array<string>, descriptions: Array<string>, values: Array<number>): void {
         for (let i = 0; i < names.length; i++) {
             this.expirationSetSetting(
                 names[i],
@@ -98,16 +122,40 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
         }
     }
 
-    expirationSetSetting(name: string, desc: string, value: string): Setting {
+    expirationSetSetting(name: string, desc: string, value: number): Setting {
         return new Setting(this.containerEl)
         .setName(name)
         .setDesc(desc)
         .addText(text => text
             .setPlaceholder('Enter category in days')
-            .setValue(value)
-            .onChange(async value => {
-                await this.plugin.saveSettings();
-            }));
+            .setValue(value.toString())
+            .onChange(async value => await this.expirationSetSettingOnChange(value, name)));
+    }
+
+    expirationSetSettingOnChange = async (value: string, name: string) => {
+        const convertedValue = value == '0' ? 0 : parseInt(value);
+        if (value == '0' || parseInt(value)) {
+            switch (name) {
+                case "Expired": 
+                    this.plugin.settings.expiredCategoryDays = convertedValue;
+                    break;
+                case "Critical": 
+                    this.plugin.settings.criticalCategoryDays = convertedValue;
+                    break;
+                case "Very High": 
+                    this.plugin.settings.veryHighCategoryDays = convertedValue;
+                    break;
+                case "Medium": 
+                    this.plugin.settings.mediumCategoryDays = convertedValue;
+                    break;
+                case "Low": 
+                    this.plugin.settings.lowCategoryDays = convertedValue;
+                    break;
+            }
+        } else if (value !== '') {
+            new Notice('Invalid input - it must be a number (Int)')
+        }
+        await this.plugin.saveSettings();
     }
     
 }
