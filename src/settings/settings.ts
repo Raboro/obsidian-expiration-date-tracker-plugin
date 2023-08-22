@@ -3,10 +3,12 @@ import ExpirationDateTrackerPlugin from 'src/main';
 
 export interface ExpirationDateTrackerSettings {
     dateFormatting: string;
+    expirationDateNodeLocation: string;
 }
 
 export const DEFAULT_SETTINGS: ExpirationDateTrackerSettings = {
-    dateFormatting: 'DD/MM/YYYY'
+    dateFormatting: 'DD/MM/YYYY',
+    expirationDateNodeLocation: 'expirationDateNode.md'
 }; 
 
 export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
@@ -20,6 +22,7 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
     display(): void {
         this.containerEl.empty();
         this.dateFormattingSettings();
+        this.expirationDateNodeLocationSettings();
     }
 
     dateFormattingSettings(): Setting {
@@ -62,6 +65,19 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
 			}
 		}
 		return false;
+	}
+
+    expirationDateNodeLocationSettings(): Setting {
+		return new Setting(this.containerEl)
+        .setName('Expiration Date Node Location')
+        .setDesc('Location of your Node containing the expiration date data with .md as postfix')
+        .addTextArea(text => text
+            .setPlaceholder('Enter the node location')
+            .setValue(this.plugin.settings.expirationDateNodeLocation)
+            .onChange(async value => {
+				this.plugin.settings.expirationDateNodeLocation = value;
+				await this.plugin.saveSettings();
+			}));
 	}
     
 }
