@@ -1,5 +1,5 @@
 import { Plugin } from 'obsidian';
-import { DEFAULT_SETTINGS, ExpirationDateTrackerSettings } from './settings/settings';
+import { DEFAULT_SETTINGS, ExpirationDateTrackerSettings, ExpirationDateTrackerSettingsTab } from './settings/settings';
 
 
 export default class ExpirationDateTrackerPlugin extends Plugin {
@@ -8,6 +8,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
     
     async onload() {
         await this.loadSettings();
+        this.addSettingTab(new ExpirationDateTrackerSettingsTab(this.app, this));
     }
 
     onunload() {
