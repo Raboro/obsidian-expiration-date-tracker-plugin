@@ -71,6 +71,8 @@ export default class ExpirationCategoriesSettings {
             case "Low":
                 this.plugin.settings.lowCategoryDays = convertedValue;
                 break;
+            default:
+                new Notice('Something went from no expiration category was selected');
         }
     }
 }
