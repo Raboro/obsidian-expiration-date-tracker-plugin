@@ -1,4 +1,4 @@
-import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
+import { App, Notice, PluginSettingTab, Setting, SliderComponent } from 'obsidian';
 import ExpirationDateTrackerPlugin from 'src/main';
 
 export interface ExpirationDateTrackerSettings {
@@ -21,8 +21,11 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
     
     display(): void {
         this.containerEl.empty();
+        this.containerEl.createEl('h3', {text: "General Settings"})
         this.dateFormattingSettings();
         this.expirationDateNodeLocationSettings();
+        this.containerEl.createEl('h3', {text: "Expiration Settings"})
+        this.expirationSettings();
     }
 
     dateFormattingSettings(): Setting {
@@ -79,5 +82,32 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
 				await this.plugin.saveSettings();
 			}));
 	}
+
+    expirationSettings(): void {
+        const names: Array<string> = ['Expired', 'Critical', 'Very High', 'High', 'Medium', 'Low'];
+        const descriptions: Array<string> = ['expired', 'soooo close of being expired', 'so close of being expired',
+                                             'close of being expired', 'pretty new', 'completely new'];
+        const values: Array<string> = ['', '', '', '', '', ''];
+
+        for (let i = 0; i < names.length; i++) {
+            this.expirationSetSetting(
+                names[i],
+                'Expiration category: ' + names[i] + ' when your item is ' + descriptions[i],
+                values[i]
+            );
+        }
+    }
+
+    expirationSetSetting(name: string, desc: string, value: string): Setting {
+        return new Setting(this.containerEl)
+        .setName(name)
+        .setDesc(desc)
+        .addText(text => text
+            .setPlaceholder('Enter category in days')
+            .setValue(value)
+            .onChange(async value => {
+                await this.plugin.saveSettings();
+            }));
+    }
     
 }
