@@ -1,9 +1,9 @@
-import { Notice, Setting } from "obsidian";
-import ExpirationDateTrackerPlugin from "src/main";
+import { Notice, Setting } from 'obsidian';
+import ExpirationDateTrackerPlugin from 'src/main';
 
 export default class ExpirationCategoriesSettings {
     private plugin: ExpirationDateTrackerPlugin;
-    private containerEl: HTMLElement
+    private containerEl: HTMLElement;
 
     constructor(plugin: ExpirationDateTrackerPlugin, containerEl: HTMLElement) {
         this.plugin = plugin;
@@ -49,26 +49,26 @@ export default class ExpirationCategoriesSettings {
         if (value == '0' || parseInt(value)) {
             this.updateValue(name, convertedValue);
         } else if (value !== '') {
-            new Notice('Invalid input - it must be a number (Int)')
+            new Notice('Invalid input - it must be a number (Int)');
         }
         await this.plugin.saveSettings();
-    }
+    };
 
     private updateValue(name: string, convertedValue: number) {
         switch (name) {
-            case "Expired":
+            case 'Expired':
                 this.plugin.settings.expiredCategoryDays = convertedValue;
                 break;
-            case "Critical":
+            case 'Critical':
                 this.plugin.settings.criticalCategoryDays = convertedValue;
                 break;
-            case "Very High":
+            case 'Very High':
                 this.plugin.settings.veryHighCategoryDays = convertedValue;
                 break;
-            case "Medium":
+            case 'Medium':
                 this.plugin.settings.mediumCategoryDays = convertedValue;
                 break;
-            case "Low":
+            case 'Low':
                 this.plugin.settings.lowCategoryDays = convertedValue;
                 break;
             default:

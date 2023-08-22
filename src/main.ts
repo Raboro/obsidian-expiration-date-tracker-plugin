@@ -20,7 +20,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
 
     trackExpirationDates = async () => {
         
-    }
+    };
 
     async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
