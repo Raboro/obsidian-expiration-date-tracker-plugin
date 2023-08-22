@@ -1,15 +1,15 @@
 import { PluginSettingTab } from 'obsidian';
 
-export interface MyPluginSettings {
+export interface ExpirationDateTrackerSettings {
     // insert settings
     example: string;
 }
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
+export const DEFAULT_SETTINGS: ExpirationDateTrackerSettings = {
     example: ''
 }; 
 
-export class MyPluginSettingsTab extends PluginSettingTab {
+export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
     
     display() {
 

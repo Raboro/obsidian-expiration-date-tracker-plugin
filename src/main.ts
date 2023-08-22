@@ -1,9 +1,9 @@
 import { Plugin } from 'obsidian';
-import { DEFAULT_SETTINGS, MyPluginSettings } from './settings/settings';
+import { DEFAULT_SETTINGS, ExpirationDateTrackerSettings } from './settings/settings';
 
 
-export default class MyPlugin extends Plugin {
-    settings: MyPluginSettings;
+export default class ExpirationDateTrackerPlugin extends Plugin {
+    settings: ExpirationDateTrackerSettings;
 
     
     async onload() {
