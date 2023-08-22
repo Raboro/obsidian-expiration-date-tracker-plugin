@@ -49,26 +49,30 @@ export default class ExpirationCategoriesSettings {
     private expirationSetSettingOnChange = async (value: string, name: string) => {
         const convertedValue = value == '0' ? 0 : parseInt(value);
         if (value == '0' || parseInt(value)) {
-            switch (name) {
-                case "Expired": 
-                    this.plugin.settings.expiredCategoryDays = convertedValue;
-                    break;
-                case "Critical": 
-                    this.plugin.settings.criticalCategoryDays = convertedValue;
-                    break;
-                case "Very High": 
-                    this.plugin.settings.veryHighCategoryDays = convertedValue;
-                    break;
-                case "Medium": 
-                    this.plugin.settings.mediumCategoryDays = convertedValue;
-                    break;
-                case "Low": 
-                    this.plugin.settings.lowCategoryDays = convertedValue;
-                    break;
-            }
+            this.updateValue(name, convertedValue);
         } else if (value !== '') {
             new Notice('Invalid input - it must be a number (Int)')
         }
         await this.plugin.saveSettings();
+    }
+
+    private updateValue(name: string, convertedValue: number) {
+        switch (name) {
+            case "Expired":
+                this.plugin.settings.expiredCategoryDays = convertedValue;
+                break;
+            case "Critical":
+                this.plugin.settings.criticalCategoryDays = convertedValue;
+                break;
+            case "Very High":
+                this.plugin.settings.veryHighCategoryDays = convertedValue;
+                break;
+            case "Medium":
+                this.plugin.settings.mediumCategoryDays = convertedValue;
+                break;
+            case "Low":
+                this.plugin.settings.lowCategoryDays = convertedValue;
+                break;
+        }
     }
 }
