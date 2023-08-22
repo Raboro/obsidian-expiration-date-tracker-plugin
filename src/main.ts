@@ -8,11 +8,18 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
     
     async onload() {
         await this.loadSettings();
+
+        this.addRibbonIcon('timer', 'Track expiration dates', this.trackExpirationDates);
+
         this.addSettingTab(new ExpirationDateTrackerSettingsTab(this.app, this));
     }
 
     onunload() {
 
+    }
+
+    trackExpirationDates = async () => {
+        
     }
 
     async loadSettings() {
