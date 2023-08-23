@@ -2,18 +2,29 @@ import { Notice, Plugin, TFile } from 'obsidian';
 import { DEFAULT_SETTINGS, ExpirationDateTrackerSettings, ExpirationDateTrackerSettingsTab } from './settings/settings';
 import Item from './item';
 import ExpirationDate from './expirationDate';
+import ExpirationCategory from './expirationCategory';
 
 
 export default class ExpirationDateTrackerPlugin extends Plugin {
     settings: ExpirationDateTrackerSettings;
-
+    expirationCategories: ExpirationCategory[];
     
     async onload() {
         await this.loadSettings();
-
+        this.updateExpirationCategories();
         this.addRibbonIcon('timer', 'Track expiration dates', this.trackExpirationDates);
-
         this.addSettingTab(new ExpirationDateTrackerSettingsTab(this.app, this));
+    }
+
+    updateExpirationCategories(): void {
+        this.expirationCategories = [
+            new ExpirationCategory('Expired', this.settings.expiredCategoryDays),
+            new ExpirationCategory('Critical', this.settings.criticalCategoryDays),
+            new ExpirationCategory('Very High', this.settings.veryHighCategoryDays),
+            new ExpirationCategory('High', this.settings.highCategoryDays),
+            new ExpirationCategory('Medium', this.settings.mediumCategoryDays),
+            new ExpirationCategory('Low', this.settings.lowCategoryDays),
+        ];
     }
 
     onunload() {
@@ -62,7 +73,12 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         const name = content[0+3*i].trim();
         const date = content[1+3*i].trim();
         const numberOfElements = content[2+3*i] === undefined ? undefined : content[2+3*i].trim();
-        return new Item(name, new ExpirationDate(date, this.settings.dateFormatting), numberOfElements);
+        return new Item(
+            name, 
+            new ExpirationDate(date, this.settings.dateFormatting), 
+            numberOfElements, 
+            this.expirationCategories
+        );
     }
 
     async loadSettings() {
@@ -71,5 +87,6 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
+        this.updateExpirationCategories();
 	}
 }

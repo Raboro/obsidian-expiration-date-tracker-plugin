@@ -36,4 +36,8 @@ export default class ExpirationDate {
         const days = -Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
         return (-days === 0) ? 0 : days;
     }
+
+    getDaysTillExpired(): number {
+        return this.daysTillExpired;
+    }
 }
