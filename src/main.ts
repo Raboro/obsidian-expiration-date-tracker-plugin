@@ -19,7 +19,12 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
     }
 
     trackExpirationDates = async () => {
-       const content = await this.fetchContent(); 
+        const content = await this.fetchContent(); 
+        if (content) {
+            this.trackExpirationDatesOfContent(content);
+        } else {
+            new Notice('Nothing inside your node');	
+        }
     };
 
     async fetchContent(): Promise<string | undefined> {
@@ -29,6 +34,10 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
 		}
 		new Notice('Node could not be found at location: ' + this.settings.expirationDateNodeLocation);
 		return undefined;
+    }
+
+    trackExpirationDatesOfContent(content: string): void {
+
     }
 
     async loadSettings() {
