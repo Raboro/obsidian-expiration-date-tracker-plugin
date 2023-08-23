@@ -11,7 +11,6 @@ export interface ExpirationDateTrackerSettings {
     highCategoryDays: number;
     mediumCategoryDays: number;
     lowCategoryDays: number;
-
 }
 
 export const DEFAULT_SETTINGS: ExpirationDateTrackerSettings = {
