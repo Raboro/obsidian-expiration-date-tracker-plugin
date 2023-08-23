@@ -1,10 +1,12 @@
 export default class ExpirationDate {
     private str: string;
     private date: Date;
+    private daysTillExpired: number;
 
     constructor(str: string, dateFormatting: string) {
 		this.str = str;
         this.convertStringToDate(dateFormatting);
+        this.daysTillExpired = this.calcDaysTillExpired();
 	}
 
     private convertStringToDate(dateFormatting: string) {
@@ -27,5 +29,11 @@ export default class ExpirationDate {
 
     private dateNumber(start: number, end: number, offset?: number): number {
         return parseInt(this.str.substring(start, end)) - (offset ?? 0);
+    }
+
+    private calcDaysTillExpired(): number {
+        const timeDifference = new Date().getTime() - this.date.getTime();
+        const days = -Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        return (-days === 0) ? 0 : days;
     }
 }
