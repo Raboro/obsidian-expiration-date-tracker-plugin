@@ -75,7 +75,7 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
 
 	containsInvalidChars(format: string): boolean {
 		const invalidChars: string[] = ['A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'N', 
-										'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Z'];
+										'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Z', '|'];
 		for (const invalidChar in invalidChars) {
 			if (this.formatContains(invalidChar, format)) {
 				return true;
