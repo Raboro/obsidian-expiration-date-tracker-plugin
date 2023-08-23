@@ -48,8 +48,9 @@ export default class ExpirationCategoriesSettings {
         const convertedValue = value == '0' ? 0 : parseInt(value);
         if (value == '0' || parseInt(value)) {
             this.updateValue(name, convertedValue);
-        } else if (value !== '') {
+        } else if (value === '') {
             new Notice('Invalid input - it must be a number (Int)');
+            return;
         }
         await this.plugin.saveSettings();
     };
