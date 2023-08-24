@@ -27,4 +27,16 @@ export default class Item {
         }
         return false;
     }
+
+    toDTO(): ItemDTO {
+        return new ItemDTO(this.name, this.expirationDate, this.numberOfElements, this.expirationCategory);
+    }
+}
+
+export class ItemDTO {
+
+    constructor(readonly name: string, 
+                readonly expirationDate: ExpirationDate, 
+                readonly numberOfElements: NumberOfElements, 
+                readonly expirationCategory: ExpirationCategory) { }
 }
