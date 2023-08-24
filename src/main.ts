@@ -13,6 +13,11 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         await this.loadSettings();
         this.updateExpirationCategories();
         this.addRibbonIcon('timer', 'Track expiration dates', this.trackExpirationDates);
+        this.addCommand({
+            id: 'track-expiration-dates',
+            name: 'Track expiration dates',
+            callback: this.trackExpirationDates
+        });
         this.addSettingTab(new ExpirationDateTrackerSettingsTab(this.app, this));
     }
 
