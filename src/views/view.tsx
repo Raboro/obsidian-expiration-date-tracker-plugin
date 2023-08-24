@@ -3,6 +3,7 @@ import Item from 'src/item';
 import * as React from 'react';
 import ItemUi from 'src/ui/itemUi';
 import { Root, createRoot } from 'react-dom/client';
+import {v4 as uuidv4} from 'uuid';
 
 export const EXPIRATION_DATE_TRACKER_VIEW_TYPE = 'Expiration-Date-Tracker';
 
@@ -29,9 +30,23 @@ export class ExpirationDateTrackerView extends ItemView {
         if (!this.root) {
             this.root = createRoot(this.container);
         }
+        console.log(items);
         this.root.render(
             <React.StrictMode>
-                <ItemUi />
+                <>
+                {items.map(item => {
+                    const { name, expirationDate, numberOfElements, expirationCategory } = item.toDTO();
+                    return (
+                        <ItemUi
+                            key={uuidv4()}
+                            name={name}
+                            expirationDate={expirationDate}
+                            numberOfElements={numberOfElements}
+                            expirationCategory={expirationCategory}
+                        />
+                    );
+                })}
+                </>
             </React.StrictMode>
         );
     }
