@@ -1,16 +1,19 @@
-import { Notice, Plugin, TFile } from 'obsidian';
+import { Notice, Plugin, TFile, WorkspaceLeaf } from 'obsidian';
 import { DEFAULT_SETTINGS, ExpirationDateTrackerSettings, ExpirationDateTrackerSettingsTab } from './settings/settings';
 import Item from './item';
 import ExpirationDate from './expirationDate';
 import ExpirationCategory from './expirationCategory';
+import { EXPIRATION_DATE_TRACKER_VIEW_TYPE, ExpirationDateTrackerView } from './views/view';
 
 
 export default class ExpirationDateTrackerPlugin extends Plugin {
     settings: ExpirationDateTrackerSettings;
     expirationCategories: ExpirationCategory[];
+    items: Item[]
     
     async onload() {
         await this.loadSettings();
+        this.registerView(EXPIRATION_DATE_TRACKER_VIEW_TYPE, (leaf) => new ExpirationDateTrackerView(leaf))
         this.updateExpirationCategories();
         this.addRibbonIcon('timer', 'Track expiration dates', this.trackExpirationDates);
         this.addCommand({
@@ -40,6 +43,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         const content = await this.fetchContent(); 
         if (content) {
             this.trackExpirationDatesOfContent(content);
+            await this.openView();
         } else {
             new Notice('Nothing inside your node');	
         }
@@ -55,7 +59,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
     }
 
     trackExpirationDatesOfContent(content: string): void {
-        this.collectItems(this.splitContent(content));
+        this.items = this.collectItems(this.splitContent(content));
     }
 
     splitContent(content: string): Array<string> {
@@ -85,6 +89,22 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
             this.expirationCategories
         );
     }
+
+    async openView(): Promise<void> {
+        const leaves: WorkspaceLeaf[] = this.app.workspace.getLeavesOfType(EXPIRATION_DATE_TRACKER_VIEW_TYPE);
+        if (this.items) {
+            (await this.getView(leaves)).displayItems(this.items);
+        }
+        this.app.workspace.revealLeaf(leaves[0]);
+    }
+
+    async getView(leaves: WorkspaceLeaf[]): Promise<ExpirationDateTrackerView> {
+		if (leaves.length == 0) {
+			leaves[0] = this.app.workspace.getRightLeaf(false);
+			await leaves[0].setViewState({type: EXPIRATION_DATE_TRACKER_VIEW_TYPE});
+		}
+		return leaves[0].view as ExpirationDateTrackerView;
+	}
 
     async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
