@@ -9,11 +9,11 @@ import { EXPIRATION_DATE_TRACKER_VIEW_TYPE, ExpirationDateTrackerView } from './
 export default class ExpirationDateTrackerPlugin extends Plugin {
     settings: ExpirationDateTrackerSettings;
     expirationCategories: ExpirationCategory[];
-    items: Item[]
+    items: Item[];
     
     async onload() {
         await this.loadSettings();
-        this.registerView(EXPIRATION_DATE_TRACKER_VIEW_TYPE, (leaf) => new ExpirationDateTrackerView(leaf))
+        this.registerView(EXPIRATION_DATE_TRACKER_VIEW_TYPE, (leaf) => new ExpirationDateTrackerView(leaf));
         this.updateExpirationCategories();
         this.addRibbonIcon('timer', 'Track expiration dates', this.trackExpirationDates);
         this.addCommand({

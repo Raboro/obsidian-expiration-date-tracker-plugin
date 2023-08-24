@@ -1,5 +1,5 @@
-import { ItemView } from "obsidian"
-import Item from "src/item";
+import { ItemView } from 'obsidian';
+import Item from 'src/item';
 
 export const EXPIRATION_DATE_TRACKER_VIEW_TYPE = 'Expiration-Date-Tracker';
 
@@ -17,7 +17,7 @@ export class ExpirationDateTrackerView extends ItemView {
 
     async onOpen(): Promise<void> {
         const { contentEl } = this;
-        contentEl.createEl('h1', {text: 'Expiration Date Tracker'})  
+        contentEl.createEl('h1', {text: 'Expiration Date Tracker'});  
         this.container = contentEl.createDiv({cls: 'itemsFlexboxContainer'});  
     }
 
