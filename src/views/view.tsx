@@ -1,9 +1,10 @@
 import { ItemView } from 'obsidian';
 import Item from 'src/item';
 import * as React from 'react';
-import ItemUi from 'src/ui/itemUi';
 import { Root, createRoot } from 'react-dom/client';
 import {v4 as uuidv4} from 'uuid';
+import ExpirationCategory from 'src/expirationCategory';
+import CategoryUi from 'src/ui/categoryUi';
 
 export const EXPIRATION_DATE_TRACKER_VIEW_TYPE = 'Expiration-Date-Tracker';
 
@@ -26,29 +27,29 @@ export class ExpirationDateTrackerView extends ItemView {
         this.container = contentEl.createDiv({cls: 'itemsFlexboxContainer'});
     }
     
-    displayItems(items: Item[]): void {
+    displayItems(items: Item[], expirationCategories: ExpirationCategory[]): void {
         if (!this.root) {
             this.root = createRoot(this.container);
         }
-        console.log(items);
         this.root.render(
             <React.StrictMode>
-                <>
-                {items.map(item => {
-                    const { name, expirationDate, numberOfElements, expirationCategory } = item.toDTO();
-                    return (
-                        <ItemUi
-                            key={uuidv4()}
-                            name={name}
-                            expirationDate={expirationDate}
-                            numberOfElements={numberOfElements}
-                            expirationCategory={expirationCategory}
-                        />
-                    );
-                })}
-                </>
+                <div className='categoriesFlexboxContainer'>
+                    {expirationCategories.map(category => {
+                        return (
+                            <CategoryUi 
+                                key={uuidv4()} 
+                                name={category.getName()} 
+                                items={this.collectItemsWithCategory(items, category)}
+                            />
+                        );
+                    })}
+                </div>
             </React.StrictMode>
         );
+    }
+
+    private collectItemsWithCategory(items: Item[], category: ExpirationCategory): Item[] {
+        return items.filter(item => item.toDTO().expirationCategory === category);
     }
 
     onclose(): void {
