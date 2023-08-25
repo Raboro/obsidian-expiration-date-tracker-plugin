@@ -10,4 +10,8 @@ export default class ExpirationCategory {
     isCategory(value: number): boolean {
         return this.value <= value;
     }
+
+    getName() {
+        return this.name;
+    }
 }
