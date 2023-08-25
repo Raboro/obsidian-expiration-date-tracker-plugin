@@ -33,7 +33,7 @@
     width: 100%;
 }
 
-.categoryHeaderContainer a {
+.categoryHeaderContainer button {
     text-align: right;
     margin-left: 10px;
 }

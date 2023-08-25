@@ -9,7 +9,7 @@ export default function CategoryHeaderUi({ name, itemCounter, changeDisplay }: C
             <div className="categoryHeaderContainer">
                 <h4>{name}</h4>
                 <h4>{itemCounter}</h4>
-                <a onClick={changeDisplay} className="expandIcon">Click</a>
+                <button onClick={changeDisplay}>Expand</button>
             </div>
         </>;
 }
