@@ -1,5 +1,41 @@
+.categoriesFlexboxContainer,
 .itemsFlexboxContainer {
     display: flex;
     flex-direction: column;
     gap: 2vh;
 }
+
+.categoryContainer {
+    border: 3px solid #3D3D3C;
+    border-radius: 10px;
+    transition-duration: .5s;
+    box-shadow: rgb(0 0 0 / 10%) 0 4px 12px;
+    scale: .95;
+}
+
+.categoryHeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.categoryHeaderContainer h4:nth-child(1) {
+    flex-grow: 1;
+    text-align: left;
+    margin-right: 10px;
+    width: 14vw;
+}
+
+.categoryHeaderContainer h4:nth-child(2) {
+    flex-grow: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.categoryHeaderContainer a {
+    text-align: right;
+    margin-left: 10px;
+}
+
+.expandIcon {}
