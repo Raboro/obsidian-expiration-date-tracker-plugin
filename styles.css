@@ -13,6 +13,12 @@
     scale: .95;
 }
 
+.categoryContainer:hover {
+    scale: 1;
+    transition-duration: .5s;
+    box-shadow: rgb(0 0 0 / 20%) 0 8px 24px;
+}
+
 .categoryHeaderContainer {
     display: flex;
     justify-content: space-between;
