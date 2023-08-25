@@ -22,10 +22,7 @@ export default class Item {
     }
 
     private isEmpty(numberOfElements: NumberOfElements): boolean {
-        if (numberOfElements && numberOfElements.toString() === '-') {
-            return true;
-        }
-        return false;
+        return numberOfElements?.toString() === '-';
     }
 
     toDTO(): ItemDTO {
