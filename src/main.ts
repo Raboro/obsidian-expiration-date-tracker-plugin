@@ -130,7 +130,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         } else {
             new Notice('No items were found');
         }
-    }
+    };
 
     async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());

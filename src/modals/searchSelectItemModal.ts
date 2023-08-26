@@ -1,5 +1,5 @@
-import { App, FuzzySuggestModal, Notice } from "obsidian";
-import { ItemDTO } from "src/item";
+import { App, FuzzySuggestModal, Notice } from 'obsidian';
+import { ItemDTO } from 'src/item';
 
 export default class SearchSelectItemModal extends FuzzySuggestModal<ItemDTO> {
     private items: ItemDTO[];
