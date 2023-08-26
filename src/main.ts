@@ -17,16 +17,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         this.registerView(EXPIRATION_DATE_TRACKER_VIEW_TYPE, (leaf) => new ExpirationDateTrackerView(leaf));
         this.updateExpirationCategories();
         this.addRibbonIcon('timer', 'Track expiration dates', this.trackExpirationDates);
-        this.addCommand({
-            id: 'track-expiration-dates',
-            name: 'Track expiration dates',
-            callback: this.trackExpirationDates
-        });
-        this.addCommand({
-            id: 'search-expiration-item',
-            name: 'Search Item',
-            callback: this.searchItem
-        });
+        this.addCommands();
         this.addSettingTab(new ExpirationDateTrackerSettingsTab(this.app, this));
     }
 
@@ -39,6 +30,19 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
             new ExpirationCategory('Medium', this.settings.mediumCategoryDays),
             new ExpirationCategory('Low', this.settings.lowCategoryDays),
         ];
+    }
+
+    addCommands(): void {
+        this.addCommand({
+            id: 'track-expiration-dates',
+            name: 'Track expiration dates',
+            callback: this.trackExpirationDates
+        });
+        this.addCommand({
+            id: 'search-expiration-item',
+            name: 'Search Item',
+            callback: this.searchItem
+        });
     }
 
     onunload() {
