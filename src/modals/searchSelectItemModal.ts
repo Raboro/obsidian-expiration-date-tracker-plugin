@@ -1,4 +1,4 @@
-import { App, FuzzySuggestModal, Notice } from 'obsidian';
+import { App, FuzzySuggestModal } from 'obsidian';
 import { ItemDTO } from 'src/item';
 import { ItemModal } from './itemModal';
 

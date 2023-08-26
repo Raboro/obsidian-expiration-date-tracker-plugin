@@ -1,20 +1,20 @@
-import { App, Modal } from "obsidian";
-import * as React from "react";
-import { Root, createRoot } from "react-dom/client";
-import { ItemDTO } from "src/item";
-import ItemUi from "src/ui/itemUi";
+import { App, Modal } from 'obsidian';
+import * as React from 'react';
+import { Root, createRoot } from 'react-dom/client';
+import { ItemDTO } from 'src/item';
+import ItemUi from 'src/ui/itemUi';
 
 export class ItemModal extends Modal {
     private root: Root;
     private item: ItemDTO;
 
     constructor(app: App, item: ItemDTO) {
-        super(app)
+        super(app);
         this.item = item;
     }    
 
     onOpen(): void {
-        let { contentEl } = this;
+        const { contentEl } = this;
         this.root = createRoot(contentEl);
         this.root.render(
             <React.StrictMode>
@@ -30,7 +30,7 @@ export class ItemModal extends Modal {
 
     onClose(): void {
         this.root.unmount();
-        let { contentEl } = this;
+        const { contentEl } = this;
         contentEl.empty();
     }
 }
