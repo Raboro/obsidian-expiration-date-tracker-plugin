@@ -1,5 +1,6 @@
 import { App, FuzzySuggestModal, Notice } from 'obsidian';
 import { ItemDTO } from 'src/item';
+import { ItemModal } from './itemModal';
 
 export default class SearchSelectItemModal extends FuzzySuggestModal<ItemDTO> {
     private items: ItemDTO[];
@@ -18,7 +19,7 @@ export default class SearchSelectItemModal extends FuzzySuggestModal<ItemDTO> {
     }
     
     onChooseItem(item: ItemDTO, evt: MouseEvent | KeyboardEvent): void {
-        new Notice(item.name + ' was selected');
+        new ItemModal(this.app, item).open();
     }
     
 }
