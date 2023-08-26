@@ -5,7 +5,12 @@
     gap: 2vh;
 }
 
-.categoryContainer {
+.itemsFlexboxContainer {
+    gap: 0;
+}
+
+.categoryContainer,
+.itemContainer {
     border: 3px solid #3D3D3C;
     border-radius: 10px;
     transition-duration: .5s;
@@ -13,7 +18,8 @@
     scale: .95;
 }
 
-.categoryContainer:hover {
+.categoryContainer:hover,
+.itemContainer:hover {
     scale: 1;
     transition-duration: .5s;
     box-shadow: rgb(0 0 0 / 20%) 0 8px 24px;
@@ -42,4 +48,17 @@
 .categoryHeaderContainer button {
     text-align: right;
     margin-left: 10px;
+}
+
+.itemContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    scale: .90;
+    margin-bottom: 10px;
+}
+
+.itemContainer:hover {
+    scale: .95;
 }
