@@ -50,14 +50,21 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
     }
 
     trackExpirationDates = async () => {
-        const content = await this.fetchContent(); 
-        if (content) {
-            this.trackExpirationDatesOfContent(content);
+        if (await this.extractContent()) {
             await this.openView();
         } else {
             new Notice('Nothing inside your node');	
         }
     };
+
+    async extractContent(): Promise<boolean> {
+        const content = await this.fetchContent(); 
+        if (content) {
+            this.trackExpirationDatesOfContent(content);
+            return true;
+        }
+        return false;
+    }
 
     async fetchContent(): Promise<string | undefined> {
         const file = this.app.vault.getAbstractFileByPath(this.settings.expirationDateNodeLocation);
@@ -117,10 +124,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
 	}
 
     searchItem = async () => {
-        const content = await this.fetchContent(); 
-        if (content) {
-            this.trackExpirationDatesOfContent(content);
-        }
+        await this.extractContent();
         if (this.items.length >= 1) {
             new SearchSelectItemModal(this.app, this.items.map(item => item.toDTO())).open();
         } else {
