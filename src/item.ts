@@ -31,7 +31,6 @@ export default class Item {
 }
 
 export class ItemDTO {
-
     constructor(readonly name: string, 
                 readonly expirationDate: ExpirationDate, 
                 readonly numberOfElements: NumberOfElements, 
