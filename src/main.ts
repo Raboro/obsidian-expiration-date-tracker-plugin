@@ -93,7 +93,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         return splittedContent;
     }
 
-    collectItems(content: Array<string>): Item[] {
+    collectItems(content: string[]): Item[] {
         const items: Item[] = [];
         for (let i = 1; i < (content.length / 3); i++) {
             items.push(this.createItem(content, i));
@@ -101,7 +101,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         return items;
     }
 
-    createItem(content: Array<string>, i: number): Item {
+    createItem(content: string[], i: number): Item {
         const name = content[0+3*i].trim();
         const date = content[1+3*i].trim();
         const numberOfElements = content[2+3*i] === undefined ? undefined : content[2+3*i].trim();
