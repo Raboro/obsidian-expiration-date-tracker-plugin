@@ -31,15 +31,16 @@ export class ExpirationDateTrackerView extends ItemView {
         if (!this.root) {
             this.root = createRoot(this.container);
         }
+        const sortedItems = this.sortItemsViaExpirationCategory(items, expirationCategories);
         this.root.render(
             <React.StrictMode>
                 <div className='categoriesFlexboxContainer'>
-                    {expirationCategories.map(category => {
+                    {expirationCategories.map((category, index) => {
                         return (
                             <CategoryUi 
                                 key={uuidv4()} 
                                 name={category.getName()} 
-                                items={this.collectItemsWithCategory(items, category)}
+                                items={sortedItems[index]}
                             />
                         );
                     })}
@@ -48,10 +49,12 @@ export class ExpirationDateTrackerView extends ItemView {
         );
     }
 
-    private collectItemsWithCategory(items: Item[], category: ExpirationCategory): ItemDTO[] {
-        return items
-                .filter(item => item.toDTO().expirationCategory === category)
-                .map(item => item.toDTO());
+    private sortItemsViaExpirationCategory(items: Item[], categories: ExpirationCategory[]): ItemDTO[][] {
+        const sortedItems: ItemDTO[][] = [[], [], [], [], [], []];
+        items.map(item => item.toDTO()).forEach(item => {
+            sortedItems[categories.findIndex(category => category === item.expirationCategory)].push(item);
+        });
+        return sortedItems;
     }
 
     onclose(): void {
