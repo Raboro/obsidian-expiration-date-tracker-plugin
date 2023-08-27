@@ -26,8 +26,7 @@ export default class ExpirationCategoriesSettings {
         );
     }
 
-    private iterateOverExpirationSettings(names: Array<string>, descriptions: Array<string>, 
-                                          values: Array<number>): void {
+    private iterateOverExpirationSettings(names: string[], descriptions: string[], values: number[]): void {
         for (let i = 0; i < names.length; i++) {
             const description = 'Expiration category: ' + names[i] + ' when your item is ' + descriptions[i];
             this.expirationSetSetting(names[i], description, values[i]);
