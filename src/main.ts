@@ -145,7 +145,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
             this.expirationCategories, 
             this.items.map(item => item.toDTO())
             ).open();
-    }
+    };
 
     async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());

@@ -1,7 +1,7 @@
-import { App, FuzzySuggestModal } from "obsidian";
-import ExpirationCategory from "src/expirationCategory";
-import { ItemDTO } from "src/item";
-import CategoryModal from "./categoryModal";
+import { App, FuzzySuggestModal } from 'obsidian';
+import ExpirationCategory from 'src/expirationCategory';
+import { ItemDTO } from 'src/item';
+import CategoryModal from './categoryModal';
 
 export default class SearchSelectExpirationCategoryModal extends FuzzySuggestModal<ExpirationCategory> {
     private expirationCategories: ExpirationCategory[];

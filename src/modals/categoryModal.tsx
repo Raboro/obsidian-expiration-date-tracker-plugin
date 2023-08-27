@@ -1,9 +1,9 @@
-import { App, Modal } from "obsidian";
-import * as React from "react";
-import { Root, createRoot } from "react-dom/client";
-import ExpirationCategory from "src/expirationCategory";
-import { ItemDTO } from "src/item";
-import CategoryUi from "src/ui/categoryUi";
+import { App, Modal } from 'obsidian';
+import * as React from 'react';
+import { Root, createRoot } from 'react-dom/client';
+import ExpirationCategory from 'src/expirationCategory';
+import { ItemDTO } from 'src/item';
+import CategoryUi from 'src/ui/categoryUi';
 
 export default class CategoryModal extends Modal {
     private root: Root;
@@ -11,7 +11,7 @@ export default class CategoryModal extends Modal {
     private items: ItemDTO[];
 
     constructor(app: App, category: ExpirationCategory, items: ItemDTO[]) {
-        super(app)
+        super(app);
         this.category = category;
         this.items = items;
     }
@@ -26,7 +26,7 @@ export default class CategoryModal extends Modal {
                     items={this.items.filter(item => item.expirationCategory === this.category)}       
                 />
             </React.StrictMode>
-        )
+        );
     }
 
     onClose(): void {
