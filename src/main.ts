@@ -5,6 +5,7 @@ import ExpirationDate from './expirationDate';
 import ExpirationCategory from './expirationCategory';
 import { EXPIRATION_DATE_TRACKER_VIEW_TYPE, ExpirationDateTrackerView } from './views/view';
 import SearchSelectItemModal from './modals/searchSelectItemModal';
+import SearchSelectExpirationCategoryModal from './modals/searchSelectExpirationCategoryModal';
 
 
 export default class ExpirationDateTrackerPlugin extends Plugin {
@@ -42,6 +43,11 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
             id: 'search-expiration-item',
             name: 'Search Item',
             callback: this.searchItem
+        });
+        this.addCommand({
+            id: 'search-expiration-category',
+            name: 'Search Expiration Category',
+            callback: this.searchExpirationCategory
         });
     }
 
@@ -131,6 +137,15 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
             new Notice('No items were found');
         }
     };
+
+    searchExpirationCategory = async () => {
+        await this.extractContent();
+        new SearchSelectExpirationCategoryModal(
+            this.app, 
+            this.expirationCategories, 
+            this.items.map(item => item.toDTO())
+            ).open();
+    }
 
     async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
