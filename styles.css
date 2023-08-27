@@ -15,12 +15,12 @@
     border-radius: 10px;
     transition-duration: .5s;
     box-shadow: rgb(0 0 0 / 10%) 0 4px 12px;
-    scale: .95;
+    scale: .90;
 }
 
 .categoryContainer:hover,
 .itemContainer:hover {
-    scale: 1;
+    scale: .95;
     transition-duration: .5s;
     box-shadow: rgb(0 0 0 / 20%) 0 8px 24px;
 }
