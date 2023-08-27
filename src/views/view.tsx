@@ -1,5 +1,5 @@
 import { ItemView } from 'obsidian';
-import Item from 'src/item';
+import Item, { ItemDTO } from 'src/item';
 import * as React from 'react';
 import { Root, createRoot } from 'react-dom/client';
 import {v4 as uuidv4} from 'uuid';
@@ -48,8 +48,10 @@ export class ExpirationDateTrackerView extends ItemView {
         );
     }
 
-    private collectItemsWithCategory(items: Item[], category: ExpirationCategory): Item[] {
-        return items.filter(item => item.toDTO().expirationCategory === category);
+    private collectItemsWithCategory(items: Item[], category: ExpirationCategory): ItemDTO[] {
+        return items
+                .filter(item => item.toDTO().expirationCategory === category)
+                .map(item => item.toDTO());
     }
 
     onclose(): void {

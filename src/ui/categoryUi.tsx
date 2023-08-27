@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ItemUi from './itemUi';
 import CategoryHeaderUi from './categoryHeaderUi';
-import Item from 'src/item';
+import { ItemDTO } from 'src/item';
 
 export interface ICategoryUi {
     name: string;
-    items: Item[];
+    items: ItemDTO[];
 }
 
 export default function CategoryUi({ name, items }: ICategoryUi) {
@@ -22,7 +22,7 @@ export default function CategoryUi({ name, items }: ICategoryUi) {
             {contentDisplay && (
                 <div className='itemsFlexboxContainer'>
                     {items.map(item => {
-                        const { name, expirationDate, numberOfElements, expirationCategory } = item.toDTO();
+                        const { name, expirationDate, numberOfElements, expirationCategory } = item;
                         return (
                             <ItemUi
                                 key={uuidv4()}
