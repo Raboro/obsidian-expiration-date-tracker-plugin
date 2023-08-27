@@ -1,4 +1,4 @@
-export interface ExpirationCategoryHeader {
+interface ExpirationCategoryHeader {
     name: string;
     itemCounter: number;
     changeDisplay: () => void;

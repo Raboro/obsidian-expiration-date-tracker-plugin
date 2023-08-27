@@ -4,7 +4,7 @@ import ItemUi from './itemUi';
 import ExpirationCategoryHeaderUi from './expirationCategoryHeaderUi';
 import { ItemDTO } from 'src/item';
 
-export interface IExpirationCategoryUi {
+interface IExpirationCategoryUi {
     name: string;
     items: ItemDTO[];
 }
