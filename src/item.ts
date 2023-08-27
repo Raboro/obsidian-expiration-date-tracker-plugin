@@ -1,7 +1,7 @@
 import ExpirationCategory from './expirationCategory';
 import ExpirationDate from './expirationDate';
 
-export type NumberOfElements = string | number | undefined;
+type NumberOfElements = string | number | undefined;
 
 export default class Item {
     private name: string;
