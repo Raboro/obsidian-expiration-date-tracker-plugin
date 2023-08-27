@@ -7,7 +7,6 @@ import { EXPIRATION_DATE_TRACKER_VIEW_TYPE, ExpirationDateTrackerView } from './
 import SearchSelectItemModal from './modals/searchSelectItemModal';
 import SearchSelectExpirationCategoryModal from './modals/searchSelectExpirationCategoryModal';
 
-
 export default class ExpirationDateTrackerPlugin extends Plugin {
     settings: ExpirationDateTrackerSettings;
     expirationCategories: ExpirationCategory[];
