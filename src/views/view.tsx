@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Root, createRoot } from 'react-dom/client';
 import {v4 as uuidv4} from 'uuid';
 import ExpirationCategory from 'src/expirationCategory';
-import CategoryUi from 'src/ui/categoryUi';
+import ExpirationCategoryUi from 'src/ui/expirationCategoryUi';
 
 export const EXPIRATION_DATE_TRACKER_VIEW_TYPE = 'Expiration-Date-Tracker';
 
@@ -34,10 +34,10 @@ export class ExpirationDateTrackerView extends ItemView {
         const sortedItems = this.sortItemsViaExpirationCategory(items, expirationCategories);
         this.root.render(
             <React.StrictMode>
-                <div className='categoriesFlexboxContainer'>
+                <div className='expirationCategoriesFlexboxContainer'>
                     {expirationCategories.map((category, index) => {
                         return (
-                            <CategoryUi 
+                            <ExpirationCategoryUi 
                                 key={uuidv4()} 
                                 name={category.getName()} 
                                 items={sortedItems[index]}

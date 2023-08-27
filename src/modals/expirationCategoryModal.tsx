@@ -3,16 +3,16 @@ import * as React from 'react';
 import { Root, createRoot } from 'react-dom/client';
 import ExpirationCategory from 'src/expirationCategory';
 import { ItemDTO } from 'src/item';
-import CategoryUi from 'src/ui/categoryUi';
+import ExpirationCategoryUi from 'src/ui/expirationCategoryUi';
 
-export default class CategoryModal extends Modal {
+export default class ExpirationCategoryModal extends Modal {
     private root: Root;
-    private category: ExpirationCategory;
+    private expirationCategory: ExpirationCategory;
     private items: ItemDTO[];
 
-    constructor(app: App, category: ExpirationCategory, items: ItemDTO[]) {
+    constructor(app: App, expirationCategory: ExpirationCategory, items: ItemDTO[]) {
         super(app);
-        this.category = category;
+        this.expirationCategory = expirationCategory;
         this.items = items;
     }
 
@@ -21,9 +21,9 @@ export default class CategoryModal extends Modal {
         this.root = createRoot(contentEl);
         this.root.render(
             <React.StrictMode>
-                <CategoryUi 
-                    name={this.category.getName()}
-                    items={this.items.filter(item => item.expirationCategory === this.category)}       
+                <ExpirationCategoryUi 
+                    name={this.expirationCategory.getName()}
+                    items={this.items.filter(item => item.expirationCategory === this.expirationCategory)}       
                 />
             </React.StrictMode>
         );

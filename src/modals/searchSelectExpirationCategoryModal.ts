@@ -1,7 +1,7 @@
 import { App, FuzzySuggestModal } from 'obsidian';
 import ExpirationCategory from 'src/expirationCategory';
 import { ItemDTO } from 'src/item';
-import CategoryModal from './categoryModal';
+import ExpirationCategoryModal from './expirationCategoryModal';
 
 export default class SearchSelectExpirationCategoryModal extends FuzzySuggestModal<ExpirationCategory> {
     private expirationCategories: ExpirationCategory[];
@@ -22,7 +22,7 @@ export default class SearchSelectExpirationCategoryModal extends FuzzySuggestMod
     }
 
     onChooseItem(item: ExpirationCategory, evt: MouseEvent | KeyboardEvent): void {
-        new CategoryModal(this.app, item, this.items).open();
+        new ExpirationCategoryModal(this.app, item, this.items).open();
     }
 
 }

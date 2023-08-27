@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ItemUi from './itemUi';
-import CategoryHeaderUi from './categoryHeaderUi';
+import ExpirationCategoryHeaderUi from './expirationCategoryHeaderUi';
 import { ItemDTO } from 'src/item';
 
-export interface ICategoryUi {
+export interface IExpirationCategoryUi {
     name: string;
     items: ItemDTO[];
 }
 
-export default function CategoryUi({ name, items }: ICategoryUi) {
+export default function ExpirationCategoryUi({ name, items }: IExpirationCategoryUi) {
     const [contentDisplay, setContentDisplay] = useState(false);
 
     const changeDisplay = () => {
@@ -17,8 +17,8 @@ export default function CategoryUi({ name, items }: ICategoryUi) {
     };
     
     return (
-        <div className='categoryContainer'>
-            <CategoryHeaderUi name={name} itemCounter={items.length} changeDisplay={changeDisplay} />
+        <div className='expirationCategoryContainer'>
+            <ExpirationCategoryHeaderUi name={name} itemCounter={items.length} changeDisplay={changeDisplay} />
             {contentDisplay && (
                 <div className='itemsFlexboxContainer'>
                     {items.map(item => {
