@@ -1,4 +1,4 @@
-import { App, FuzzySuggestModal, Notice } from "obsidian";
+import { App, FuzzySuggestModal } from "obsidian";
 import ExpirationCategory from "src/expirationCategory";
 import { ItemDTO } from "src/item";
 import CategoryModal from "./categoryModal";
