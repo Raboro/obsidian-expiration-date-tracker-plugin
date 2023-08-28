@@ -14,6 +14,10 @@ export default class Item {
         this.name = name;
         this.expirationDate = expirationDate;
         this.numberOfElements = this.isEmpty(numberOfElements) ? 1 : numberOfElements;
+        this.setExpirationCategory(expirationCategories);
+    }
+
+    private setExpirationCategory(expirationCategories: ExpirationCategory[]) {
         expirationCategories.forEach(c => {
             if (c.isCategory(this.expirationDate.getDaysTillExpired())) {
                 this.expirationCategory = c;
