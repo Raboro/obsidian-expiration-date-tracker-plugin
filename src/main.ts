@@ -35,7 +35,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
     addCommands(): void {
         this.addCommand({
             id: 'track-expiration-dates',
-            name: 'Track expiration dates',
+            name: 'Track Expiration Dates',
             callback: this.trackExpirationDates
         });
         this.addCommand({
