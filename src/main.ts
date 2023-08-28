@@ -66,6 +66,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
         const content = await this.fetchContent(); 
         if (content) {
             this.trackExpirationDatesOfContent(content);
+            this.noticeIfExpired();
             return true;
         }
         return false;
@@ -110,6 +111,22 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
             numberOfElements, 
             this.expirationCategories
         );
+    }
+
+    noticeIfExpired(): void {
+        const expiredItems: Item[] = this.items.filter(item => {
+            return item.toDTO().expirationCategory === this.expirationCategories[0]
+        });
+        if (expiredItems.length !== 0) {
+            this.noticeForAllExpiredItems(expiredItems);
+        }
+    }
+
+    noticeForAllExpiredItems(expiredItems: Item[]) {
+        let message = ' expired: ';
+        expiredItems.forEach(item => message = message.concat(item.toDTO().name).concat(', '));
+        message = message.substring(0, message.length-2);
+        new Notice('The following ' + ((expiredItems.length === 1) ? 'item is': 'items are').concat(message));
     }
 
     async openView(): Promise<void> {
