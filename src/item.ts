@@ -33,7 +33,7 @@ export default class Item {
     }
 
     private isSmallerThenExpired(expirationCategories: ExpirationCategory[]) {
-        return !expirationCategories[0].isCategory(this.expirationDate.getDaysTillExpired())
+        return !expirationCategories[0].isCategory(this.expirationDate.getDaysTillExpired());
     }
 
     toDTO(): ItemDTO {

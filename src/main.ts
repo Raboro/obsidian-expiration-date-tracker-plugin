@@ -115,7 +115,7 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
 
     noticeIfExpired(): void {
         const expiredItems: Item[] = this.items.filter(item => {
-            return item.toDTO().expirationCategory === this.expirationCategories[0]
+            return item.toDTO().expirationCategory === this.expirationCategories[0];
         });
         if (expiredItems.length !== 0) {
             this.noticeForAllExpiredItems(expiredItems);
