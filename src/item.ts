@@ -19,10 +19,17 @@ export default class Item {
                 this.expirationCategory = c;
             }
         });
+        if (this.isSmallerThenExpired(expirationCategories)) {
+            this.expirationCategory = expirationCategories[0];
+        }
     }
 
     private isEmpty(numberOfElements: NumberOfElements): boolean {
         return numberOfElements?.toString() === '-';
+    }
+
+    private isSmallerThenExpired(expirationCategories: ExpirationCategory[]) {
+        return !expirationCategories[0].isCategory(this.expirationDate.getDaysTillExpired())
     }
 
     toDTO(): ItemDTO {
