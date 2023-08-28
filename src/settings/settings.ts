@@ -34,10 +34,9 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
     
     display(): void {
         this.containerEl.empty();
-        this.containerEl.createEl('h3', {text: 'General Settings'});
         this.dateFormattingSettings();
         this.expirationDateNodeLocationSettings();
-        this.containerEl.createEl('h3', {text: 'Expiration Settings'});
+        this.containerEl.createEl('h3', {text: 'Expiration categories'});
         const expirationCategoriesSettings = new ExpirationCategoriesSettings(this.plugin, this.containerEl);
         expirationCategoriesSettings.expirationSettings();
     }
