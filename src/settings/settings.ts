@@ -80,7 +80,7 @@ export class ExpirationDateTrackerSettingsTab extends PluginSettingTab {
 
     expirationDateNodeLocationSettings(): Setting {
 		return new Setting(this.containerEl)
-        .setName('Expiration Date Node Location')
+        .setName('Expiration date node location')
         .setDesc('Location of your Node containing the expiration date data with .md as postfix')
         .addTextArea(text => text
             .setPlaceholder('Enter the node location')
