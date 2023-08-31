@@ -15,7 +15,8 @@ You need a file containing all the expiration data. To find the file you need to
 After that you can click on the ribbon icon or use the ``Track Expiration Dates`` command to trigger the data collection. Then all items are displayed in a separate view. You also get a notice for all expired items.
 The Expiration Category contains the category name, the items within this category and the expand button. This button will show/hide all your items within this category. The Item contains the name, the number of elements (which can be a number like 10 apples of a string like 200g banana) and the days till it expires.
 ## Commands 
-You can search for a specific item or category or track all your expiration dates. The data you searched for will be displayed in a modal. \
+You can search for a specific item or category or track all your expiration dates. The data you searched for will be displayed in a modal.
+
 ![Command demo image](assets/CommandsDemo.png)
 
 ## Settings
