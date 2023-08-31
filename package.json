@@ -1,6 +1,6 @@
 {
 	"name": "expiration-date-tracker",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Keep track of all expiration dates, for example, for your groceries.",
 	"main": "src/main.js",
 	"scripts": {
