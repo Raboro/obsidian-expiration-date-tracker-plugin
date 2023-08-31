@@ -57,7 +57,7 @@ export class ExpirationDateTrackerView extends ItemView {
         return sortedItems;
     }
 
-    onclose(): void {
+    async onClose(): Promise<void> {
         this.root.unmount();
     }
 
