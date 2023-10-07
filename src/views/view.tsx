@@ -58,7 +58,7 @@ export class ExpirationDateTrackerView extends ItemView {
     }
 
     async onClose(): Promise<void> {
-        this.root.unmount();
+        if (this.root) this.root.unmount();
     }
 
 }
