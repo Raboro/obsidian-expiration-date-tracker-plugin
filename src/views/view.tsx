@@ -24,7 +24,7 @@ export class ExpirationDateTrackerView extends ItemView {
     async onOpen(): Promise<void> {
         const { contentEl } = this;
         contentEl.createEl('h1', {text: 'Expiration Date Tracker'});  
-        this.container = contentEl.createDiv({cls: 'itemsFlexboxContainer'});
+        this.container = contentEl.createDiv({cls: 'expirationItemsFlexboxContainer'});
     }
     
     displayItems(items: Item[], expirationCategories: ExpirationCategory[]): void {

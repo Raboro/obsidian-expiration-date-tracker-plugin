@@ -20,7 +20,7 @@ export default function ExpirationCategoryUi({ name, items }: IExpirationCategor
         <div className='expirationCategoryContainer'>
             <ExpirationCategoryHeaderUi name={name} itemCounter={items.length} changeDisplay={changeDisplay} />
             {contentDisplay && (
-                <div className='itemsFlexboxContainer'>
+                <div className='expirationItemsFlexboxContainer'>
                     {items.map(item => {
                         const { name, expirationDate, numberOfElements, expirationCategory } = item;
                         return (
