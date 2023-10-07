@@ -1,8 +1,8 @@
 # Obsidian-Expiration-Date-Tracker-Plugin
 
 [![Latest Release](https://img.shields.io/github/v/release/Raboro/obsidian-expiration-date-tracker-plugin?include_prereleases&sort=semver&style=for-the-badge)](https://github.com/Raboro/obsidian-expiration-date-tracker-plugin/releases/latest) [![Total Downloads](https://img.shields.io/github/downloads/Raboro/obsidian-expiration-date-tracker-plugin/total?style=for-the-badge)](https://github.com/Raboro/obsidian-expiration-date-tracker-plugin/releases/latest)
-[![Linter Workflow Status](https://img.shields.io/github/actions/workflow/status/Raboro/obsidian-expiration-date-tracker-plugin/linter.yml?branch=master&logo=github&style=for-the-badge)](https://github.com/Raboro/obsidian-expiration-date-tracker-plugin/actions/workflows/linter.yml)
-[![Release Workflow Status](https://img.shields.io/github/actions/workflow/status/Raboro/obsidian-expiration-date-tracker-plugin/release.yml?branch=master&logo=github&style=for-the-badge)](https://github.com/Raboro/obsidian-expiration-date-tracker-plugin/actions/workflows/release.yml)
+[![Linter Workflow Status](https://img.shields.io/github/actions/workflow/status/Raboro/obsidian-expiration-date-tracker-plugin/linter.yml?branch=main&logo=github&style=for-the-badge)](https://github.com/Raboro/obsidian-expiration-date-tracker-plugin/actions/workflows/linter.yml)
+[![Release Workflow Status](https://img.shields.io/github/actions/workflow/status/Raboro/obsidian-expiration-date-tracker-plugin/release.yml?branch=main&logo=github&style=for-the-badge)](https://github.com/Raboro/obsidian-expiration-date-tracker-plugin/actions/workflows/release.yml)
 
 With this plugin you can keep track of all the expiration dates of your items such as groceries.
 
