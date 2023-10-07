@@ -139,8 +139,9 @@ export default class ExpirationDateTrackerPlugin extends Plugin {
 
     async getView(leaves: WorkspaceLeaf[]): Promise<ExpirationDateTrackerView> {
 		if (leaves.length == 0) {
-			leaves[0] = this.app.workspace.getRightLeaf(false);
-			await leaves[0].setViewState({type: EXPIRATION_DATE_TRACKER_VIEW_TYPE});
+			const leaf = this.app.workspace.getRightLeaf(false);
+			await leaf.setViewState({type: EXPIRATION_DATE_TRACKER_VIEW_TYPE});
+            return leaf.view as ExpirationDateTrackerView;
 		}
 		return leaves[0].view as ExpirationDateTrackerView;
 	}
